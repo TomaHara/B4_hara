@@ -47,12 +47,12 @@ def download_data(user_info_path, download_path):
         password.send_keys(login_info['password'])
         driver.find_element(by=By.XPATH, value="/html/body/div/div/div[1]/div/main/div/form/div[3]/button").click()
         time.sleep(2)
-        #ログインに失敗した場合、処理をスキップ
+        #ログインに失敗した場合、そのアカウントを通知して停止
         if "error=invalid_credentials" in driver.current_url:
             print("Login failed for:", login_info['account_mailadress'])
             driver.get("https://cloud.ouraring.com/user/sign-in")
             time.sleep(2)
-            continue
+            sys.exit("Fail to login")
         driver.get("https://cloud.ouraring.com/profile")
         time.sleep(2)
         #ダウンロード
