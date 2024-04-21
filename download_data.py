@@ -44,13 +44,14 @@ with open("C:\\Users\\透真\\OuraRing\\sleep_data\\実験参加者リスト\\pa
     reader = csv.reader(csvfile)
     user_data = [row for row in reader]
 
-download_data(user_data)
+#download_data(user_data)
 
 #ダウンロードしたファイルを更新時間でソート
 download_file = sorted(Path("C:\\Users\\透真\\OuraRing\\sleep_data\\睡眠データ保存").glob("*"), key=os.path.getatime)
 #omu-user○○○の形式にリネーム
 for name, file in zip(user_data, download_file):
-    newname = Path(file).with_name("omu-user"+name[1][-3:-1]+".csv")
+    newname = Path(file).with_name("omu-user"+name[1][-3:]+".csv")
+    print(newname)
     file.rename(newname)
 
 
