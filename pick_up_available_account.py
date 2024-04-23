@@ -3,18 +3,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import csv
-from pathlib import Path
 import sys
+import download_ouradata
 
-#csvファイルからユーザのe-mailとpasswordのリストを取得する関数
-def read_user_data(path):
-    try:
-        with open(path, "r", encoding='utf-8-sig') as csvfile:
-            reader = csv.DictReader(csvfile)
-            user_data = [row for row in reader]
-            return user_data
-    except FileNotFoundError:
-        sys.exit("File not found")
 
 #生きているアカウントをまとめる関数
 def pick_up_available_account(user_info_path, output_path):
@@ -25,7 +16,7 @@ def pick_up_available_account(user_info_path, output_path):
     driver.get("https://cloud.ouraring.com/user/sign-in")
     time.sleep(5)
 
-    user_data = read_user_data(user_info_path)
+    user_data = download_ouradata.read_user_data(user_info_path)
     available_account_list = [['account_mailadress', 'password']]
 
     #ログイン処理
