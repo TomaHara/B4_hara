@@ -30,6 +30,11 @@ def datetime(df): #'bedtime_start'と'bedtime_end'を'%Y-%m-%d %H:%M:%S'の型�
     df['bedtime_start'] = df['bedtime_start'].dt.strftime('%Y-%m-%d %H:%M:%S')
     df['bedtime_end'] = df['bedtime_end'].dt.strftime('%Y-%m-%d %H:%M:%S')
 
+def select_period(df,start_date,end_date): #指定した期間のデータを抽出(start_date,end_dateはdatetime(%y,%m,%d))
+    df['day'] = pd.to_datetime(df['day'])
+    filtered_df = df[(df['day']>start_date) & (df['day']<end_date)]
+    return filtered_df
+
 if __name__ == "__main__":
     file_list = Path("~~~~~~~~~~~~~~~~~~~~~").glob('*.csv')
     for row in file_list:
