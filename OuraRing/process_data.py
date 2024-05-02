@@ -1,8 +1,9 @@
 import pandas as pd
 from pathlib import Path
+from datetime import datetime
 
 def add_username(path):  #フォルダ内のcsvファイルに"user"列を追加
-    file_list = Path(path).glob('*.csv')
+    file_list = Path(path).glob('omu-user???.csv')
     for row in file_list:
         df = pd.read_csv(row)
         if 'user' in df.columns:
@@ -12,17 +13,17 @@ def add_username(path):  #フォルダ内のcsvファイルに"user"列を追加
             df['user'] = username
             df.to_csv(row, index=False)
 
-def combine_all_data(path_from, path_to):  #フォルダ内のcsvファイルを結合
-    file_list = Path(path_from).glob('*.csv')
+def combine_all_data(path):  #フォルダ内のcsvファイルを結合
+    file_list = Path(path).glob('omu-user???.csv')
     df_list = []
     for row in file_list:
         df = pd.read_csv(row)
-        if df.shape[0] == 0:
+        if df.shape[0] == 0:  #データのないファイルは結合しない
             pass
         else:
             df_list.append(pd.read_csv(row))
     combined_df = pd.concat(df_list, ignore_index=True)
-    combined_df.to_csv(path_to + r"\all_sleep_data.csv")
+    combined_df.to_csv(path + r"\all_sleep_data.csv")
 
 def datetime(df): #'bedtime_start'と'bedtime_end'を'%Y-%m-%d %H:%M:%S'の型に合わす
     df['bedtime_start'] = pd.to_datetime(df['bedtime_start'], utc=True).dt.tz_convert('Asia/Tokyo')
