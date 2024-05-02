@@ -32,7 +32,7 @@ def datetime(df): #'bedtime_start'と'bedtime_end'を'%Y-%m-%d %H:%M:%S'の型�
 
 def select_period(df,start_date,end_date): #指定した期間のデータを抽出(start_date,end_dateはdatetime(%y,%m,%d))
     df['day'] = pd.to_datetime(df['day'])
-    filtered_df = df[(df['day']>start_date) & (df['day']<end_date)]
+    filtered_df = df[(df['day'] >= start_date) & (df['day'] <= end_date)]
     return filtered_df
 
 if __name__ == "__main__":
