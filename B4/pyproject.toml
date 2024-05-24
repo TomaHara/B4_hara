@@ -1,0 +1,32 @@
+[project]
+name = "reserch"
+version = "0.1.0"
+description = "Add your description here"
+dependencies = [
+    "ipykernel>=6.29.4",
+    "pandas>=2.2.2",
+    "scikit-learn>=1.5.0",
+    "umap>=0.1.1",
+    "matplotlib>=3.9.0",
+    "seaborn>=0.13.2",
+    "umap-learn>=0.5.6",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "mypy>=1.10.0",
+    "ruff>=0.4.4",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/reserch"]

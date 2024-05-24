@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment
+.venv/
+.env
+.python-version
+
+# VS Code
+.vscode/
+
+# Data directories
+Data/
+
+# Log files
+*.log
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Dependency directories
+node_modules/
