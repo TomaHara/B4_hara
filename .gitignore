@@ -31,3 +31,6 @@ node_modules/
 
 # file
 /**/*.ipyn
+
+# setting file
+/**/*.json
