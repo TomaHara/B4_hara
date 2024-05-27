@@ -1,4 +1,4 @@
-# macOS
+i# macOS
 .DS_Store
 
 # Python
@@ -30,7 +30,10 @@ build/
 node_modules/
 
 # file
-/**/*.ipyn
+.ipyn
 
 # setting file
-/**/*.json
+.json
+
+# Data file
+Data/
